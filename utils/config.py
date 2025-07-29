@@ -1,0 +1,21 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
+AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
+DEPLOYMENT_EMBEDDING = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+DEPLOYMENT_COMPLETION = os.getenv("AZURE_OPENAI_COMPLETION_DEPLOYMENT")
+
+# File Paths
+INPUT_FILE_PATH = os.getenv("INPUT_FILE")
+OUTPUT_INDEX_PATH = os.getenv("OUTPUT_INDEX")
+OUTPUT_METADATA_PATH = os.getenv("OUTPUT_METADATA")
+
+PROMPT_FILE_PATH = "prompts/prompt_v1.txt"
+CHUNK_EMBEDDINGS_PATH = os.getenv("CHUNK_EMBEDDINGS_PATH")
+
+# Toggle to False to disable onboarding popup
+SHOW_ONBOARDING = os.getenv("SHOW_ONBOARDING").lower() == "true"

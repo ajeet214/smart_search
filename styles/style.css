@@ -1,0 +1,30 @@
+/* Default button style */
+div.stButton > button {
+    border-radius: 8px;
+    background-color: #f0f0f5;
+    color: #333333;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease;
+    border: none;
+}
+
+/* Hover effect */
+div.stButton > button:hover {
+    background-color: #cce5ff;
+    color: black;
+    cursor: pointer;
+}
+
+/* Remove focus border */
+div.stButton > button:focus,
+div.stButton > button:focus-visible,
+div.stButton > button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Center align */
+div.stButton {
+    text-align: center;
+}
