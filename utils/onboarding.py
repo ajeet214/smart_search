@@ -19,6 +19,11 @@ def show_onboarding():
             st.session_state.show_tour = False
 
         with st.container():
+
+            cols = st.columns([4, 1, 4])
+            with cols[1]:
+                st.image("data/logo/smart_search_logo.png", width=320)
+
             st.markdown(
                 """
                 <div style='
