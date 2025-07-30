@@ -5,6 +5,7 @@ from utils.search_engine import search_top_k
 from utils.answer_generator import build_prompt, generate_answer
 from utils.examples import get_example_prompts
 from utils.onboarding import show_onboarding
+from utils.theme import apply_theme_css
 
 
 # Load external CSS file
@@ -16,21 +17,33 @@ def load_local_css(path):
 load_local_css("styles/style.css")
 
 st.set_page_config(page_title="Smart Search with GenAI", page_icon="🔍", layout="wide")
-st.title("🔍 Smart Search - GenAI Powered")
 
-# Show the onboarding modal
+# Theme toggle in sidebar
+theme = st.sidebar.radio("🌓 Theme", ("Light", "Dark"))
+st.session_state["theme"] = theme
+
+# Apply theme CSS
+apply_theme_css(theme)
+
+# Onboarding and Title
+st.title("🔍 Smart Search - GenAI Powered")
 show_onboarding()
 
-# Input
+# Initialize session state variables
 if "query_input" not in st.session_state:
     st.session_state.query_input = ""
+if "last_query" not in st.session_state:
+    st.session_state.last_query = ""
+if "last_result" not in st.session_state:
+    st.session_state.last_result = None
 
+# Query input
 st.text_input("Enter your query:", key="query_input")
 
-# Suggested prompts (as buttons)
+# Example prompts
 st.markdown("##### 💡 Try an example prompt:")
 example_prompts = get_example_prompts()
-buttons_per_row = 5  # You can change to 2 or 4 depending on layout
+buttons_per_row = 5
 
 
 def set_example_query(example):
@@ -44,10 +57,10 @@ for i in range(0, len(example_prompts), buttons_per_row):
         cols[j].button(prompt, use_container_width=True, on_click=set_example_query, args=(prompt,))
 
 
-# Run the search
+# Run the search only if query changed
 query = st.session_state.query_input.strip()
 
-if query:
+if query and query != st.session_state.last_query:
     with st.container():
         progress_placeholder = st.empty()
 
@@ -77,12 +90,17 @@ if query:
         time.sleep(0.5)
 
         answer = generate_answer(prompt)
-        progress_placeholder.empty()  # Clear loader
+        progress_placeholder.empty()
 
-    # Show output
+        # Cache results
+        st.session_state.last_query = query
+        st.session_state.last_result = {"chunks": chunks, "answer": answer}
+
+# Show cached result if available
+if st.session_state.last_result:
     st.subheader("🤖 Answer")
-    st.markdown(answer)
+    st.markdown(st.session_state.last_result["answer"])
 
     with st.expander("📚 Context used"):
-        for i, chunk in enumerate(chunks, start=1):
+        for i, chunk in enumerate(st.session_state.last_result["chunks"], start=1):
             st.markdown(f"**{i}.** {chunk}")
