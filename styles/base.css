@@ -1,0 +1,12 @@
+/* ---------------------------------------------------
+📌 Base styles, CSS variables
+--------------------------------------------------- */
+:root {
+  --primary-color: #8cb85e;
+  --primary-hover: #7ca94f;
+  --accent-color: #5e9cff;
+  --background-light: #ffffff;
+  --background-dark: #1e1e1e;
+  --text-light: #2c3e50;
+  --text-dark: #ffffff;
+}

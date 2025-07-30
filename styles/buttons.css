@@ -1,0 +1,33 @@
+/* ---------------------------------------------------
+🔘 Button Style with Hover Animation
+--------------------------------------------------- */
+div.stButton > button {
+  border-radius: 8px;
+  background-color: #f0f0f5;
+  color: #333333;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 500;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
+div.stButton > button:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+div.stButton > button:focus,
+div.stButton > button:focus-visible,
+div.stButton > button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+div.stButton {
+  text-align: center;
+}

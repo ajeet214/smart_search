@@ -1,0 +1,12 @@
+/* ---------------------------------------------------
+🌗 Light & Dark Theme Classes
+--------------------------------------------------- */
+.light-theme {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.dark-theme {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}

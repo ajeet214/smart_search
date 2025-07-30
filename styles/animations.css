@@ -1,0 +1,17 @@
+/* ---------------------------------------------------
+🎬 Animations (used in onboarding, modals, etc.)
+--------------------------------------------------- */
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-box {
+  animation: slideInFromTop 0.8s ease-out forwards;
+}
