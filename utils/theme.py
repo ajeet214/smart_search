@@ -1,9 +1,24 @@
 # utils/theme.py
+
+"""
+Module: theme
+-------------
+Handles dynamic theme switching between Light and Dark modes
+by injecting custom CSS into the Streamlit app.
+"""
+
 import streamlit as st
 
 
-def apply_theme_css(theme):
+def apply_theme_css(theme: str):
+    """
+    Applies custom CSS styles based on the selected theme.
+
+    Args:
+        theme (str): Either "Light" or "Dark" to determine which theme to apply.
+    """
     if theme == "Dark":
+        # Custom dark mode styles
         dark_css = """
         <style>
             body {
@@ -27,7 +42,9 @@ def apply_theme_css(theme):
         </style>
         """
         st.markdown(dark_css, unsafe_allow_html=True)
+
     else:
+        # Custom light mode styles
         light_css = """
         <style>
             body {

@@ -1,6 +1,23 @@
 # utils/examples.py
 
-def get_example_prompts():
+"""
+Module: examples
+----------------
+Provides example prompt suggestions for the Smart Search application.
+These prompts help users understand how to interact with the system.
+"""
+
+from typing import List
+
+
+def get_example_prompts() -> List[str]:
+    """
+    Returns a list of sample natural language prompts
+    that users can try in the search interface.
+
+    Returns:
+        List[str]: A list of sample queries.
+    """
     return [
         "Who attended AI-related events in Singapore?",
         "List members of the Data Science team based in Tokyo.",
