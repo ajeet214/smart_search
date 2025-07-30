@@ -26,7 +26,7 @@ def show_onboarding():
 
             st.markdown(
                 """
-                <div style='
+                <div class="slide-in-box" style='
                     background-color: rgba(240, 240, 240, 1);
                     border-radius: 12px;
                     padding: 2rem;
