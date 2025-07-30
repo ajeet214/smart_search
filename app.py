@@ -80,6 +80,7 @@ if query and query != st.session_state.last_query:
         time.sleep(0.5)
 
         chunks = results["TextChunk"].tolist()
+        st.session_state["chunks"] = chunks
         prompt = build_prompt(chunks, query)
 
         # Step 3: LLM Answering
@@ -101,6 +102,20 @@ if st.session_state.last_result:
     st.subheader("🤖 Answer")
     st.markdown(st.session_state.last_result["answer"])
 
-    with st.expander("📚 Context used"):
-        for i, chunk in enumerate(st.session_state.last_result["chunks"], start=1):
-            st.markdown(f"**{i}.** {chunk}")
+    if "chunks" in st.session_state:
+        chunks = st.session_state["chunks"]
+        with st.expander("📚 Context used"):
+            for i, chunk in enumerate(chunks, start=1):
+                st.markdown(f"""
+                    <div style="
+                        background-color: #f1f1f1;
+                        border-left: 6px solid #8bb7f0;
+                        padding: 1rem;
+                        border-radius: 12px;
+                        margin-bottom: 0.75rem;
+                        font-size: 0.95rem;
+                        line-height: 1.5;
+                        ">
+                        <strong>{i}.</strong> {chunk}
+                    </div>
+                """, unsafe_allow_html=True)
