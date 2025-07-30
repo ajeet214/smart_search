@@ -1,4 +1,5 @@
 # app.py
+import time
 import streamlit as st
 from utils.search_engine import search_top_k
 from utils.answer_generator import build_prompt, generate_answer
@@ -47,12 +48,38 @@ for i in range(0, len(example_prompts), buttons_per_row):
 query = st.session_state.query_input.strip()
 
 if query:
-    with st.spinner("Searching and generating answer..."):
+    with st.container():
+        progress_placeholder = st.empty()
+
+        # Step 1: Retrieval
+        progress_placeholder.markdown("""
+            <div class="loader"></div>
+            <p style="text-align:center;">🔍 Retrieving top-k chunks...</p>
+        """, unsafe_allow_html=True)
         results = search_top_k(query, k=5)
+        time.sleep(0.5)
+
+        # Step 2: Reranking
+        progress_placeholder.markdown("""
+            <div class="loader"></div>
+            <p style="text-align:center;">🔁 Reranking chunks by relevance...</p>
+        """, unsafe_allow_html=True)
+        time.sleep(0.5)
+
         chunks = results["TextChunk"].tolist()
         prompt = build_prompt(chunks, query)
-        answer = generate_answer(prompt)
 
+        # Step 3: LLM Answering
+        progress_placeholder.markdown("""
+            <div class="loader"></div>
+            <p style="text-align:center;">💬 Generating LLM answer...</p>
+        """, unsafe_allow_html=True)
+        time.sleep(0.5)
+
+        answer = generate_answer(prompt)
+        progress_placeholder.empty()  # Clear loader
+
+    # Show output
     st.subheader("🤖 Answer")
     st.markdown(answer)
 
