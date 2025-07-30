@@ -1,6 +1,6 @@
 # Smart Search with GenAI
 
-![Smart Search Logo](https://raw.githubusercontent.com/your-username/smart-search/main/assets/logo.png)
+![Smart Search Logo](data/logo/smart_search_logo.png)
 
 > **An intelligent, LLM-powered semantic search tool for querying structured data using natural language.**
 
