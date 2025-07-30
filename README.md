@@ -57,6 +57,9 @@ smart_search/
 │   │   ├── people_data_100.xlsx
 │   │   ├── people_data_500.xlsx
 │   │   └── people_data_1000.xlsx
+│   ├── logo/
+│   │   ├── smart_search_logo.png
+│   │   └── favicon.ico
 │   └── processed/
 │       └── people_data_1000_with_textchunk.xlsx
 │
@@ -76,7 +79,13 @@ smart_search/
 │   └── search_with_llm.py        # RAG CLI interface
 │
 ├── styles/
-│   └── style.css                 # Custom CSS styling for Streamlit
+│   ├── base.css              # Global variables, resets
+│   ├── theme.css             # Light/Dark theme styling
+│   ├── buttons.css           # Button design + animation
+│   ├── loader.css            # Custom loader animation
+│   ├── animations.css        # Additional animations (e.g., onboarding)
+│   └── style.css             # (Optional) Imports all above files if needed
+│
 │
 └── utils/                        # Reusable backend logic
     ├── __init__.py
@@ -87,9 +96,12 @@ smart_search/
     ├── examples.py               # Suggested prompt examples
     ├── onboarding.py             # First-time user walkthrough
     ├── prompt_loader.py          # Load prompt from file
+    ├── theme.py                  # # Theme CSS injection
     ├── reranker.py               # Cosine-based reranker
     └── search_engine.py          # Semantic + reranked search logic
 ```
+
+---
 
 ## ⚙️ Setup Instructions
 
@@ -97,9 +109,9 @@ smart_search/
 1. **Clone the repository**
 
    ```bash
-   - git clone https://github.com/ajeet214/smart_search.git
-   - cd smart_search
-
+   git clone https://github.com/ajeet214/smart_search.git
+   cd smart_search
+   ```
 2. **Install dependencies and setup environment using `uv`**
 
    - Initialize environment (if not already done):
