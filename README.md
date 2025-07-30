@@ -26,6 +26,12 @@ Built with **Streamlit**, the UI offers an interactive, user-friendly experience
 
 ---
 
+## Solution Architecture:
+![Solution Architecture](data/logo/solution_architecture.png)
+
+---
+
+
 ## 🧱 Tech Stack
 
 | Category         | Tools Used                                |
