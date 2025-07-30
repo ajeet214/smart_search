@@ -16,11 +16,16 @@ def load_local_css(path):
 
 load_local_css("styles/style.css")
 
-st.set_page_config(page_title="Smart Search with GenAI", page_icon="🔍", layout="wide")
+st.set_page_config(
+    page_title="Smart Search with GenAI",
+    page_icon="data/logo/favicon.ico",
+    layout="wide")
 
 # Theme toggle in sidebar
 theme = st.sidebar.radio("🌓 Theme", ("Light", "Dark"))
 st.session_state["theme"] = theme
+theme_class = "light-theme" if theme == "Light" else "dark-theme"
+st.markdown(f"<body class='{theme_class}'>", unsafe_allow_html=True)
 
 # Apply theme CSS
 apply_theme_css(theme)
